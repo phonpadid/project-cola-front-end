@@ -18,26 +18,26 @@ const menus = ref<SettingMenu[]>([
   { namePath: 'user-profile', icon: 'pi pi-user', title: 'Profile', detail: 'ຂໍ້ມູນໂປຼໄຟລ໌' }
 ])
 
-if (state.data) {
-  if (state.data.role.name === 'admin') {
-    menus.value.push(
-      ...[
-        {
-          namePath: 'company-profile',
-          icon: 'pi pi-building',
-          title: 'Company',
-          detail: 'ຂໍ້ມູນບໍລິສັດ'
-        },
-        {
-          namePath: 'bank.list',
-          icon: 'pi pi-money-bill',
-          title: 'Bank Account',
-          detail: 'ຈັດການບັນຊີທະນາຄານ'
-        }
-      ]
-    )
-  }
-}
+// if (state.data) {
+//   if (state.data.role.name === 'admin') {
+//     menus.value.push(
+//       ...[
+//         {
+//           namePath: 'company-profile',
+//           icon: 'pi pi-building',
+//           title: 'Company',
+//           detail: 'ຂໍ້ມູນບໍລິສັດ'
+//         },
+//         {
+//           namePath: 'bank.list',
+//           icon: 'pi pi-money-bill',
+//           title: 'Bank Account',
+//           detail: 'ຈັດການບັນຊີທະນາຄານ'
+//         }
+//       ]
+//     )
+//   }
+// }
 
 const visible = ref<boolean>(false)
 

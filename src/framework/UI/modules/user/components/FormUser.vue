@@ -12,18 +12,18 @@ import PImage from 'primevue/image'
 import Message from 'primevue/message'
 import type { VirtualScrollerLazyEvent } from 'primevue/virtualscroller'
 import { useForm } from 'vee-validate'
-import { ref } from 'vue'
+import { ref,computed } from 'vue'
 import { useAuthStore } from '../../auth/stores/auth.store'
 import { useRoleStore } from '../../role/stores/role.store'
 import { userSchema, type UserSchema } from '../schema/user.schema'
 
-interface OldValue extends Omit<UserDTO, 'company' | 'profile'> {
-  profile: string
-}
+// interface OldValue extends Omit<UserDTO, 'company' | 'profile'> {
+//   profile: string
+// }
 
-const props = defineProps<{
-  oldValues?: OldValue
-}>()
+// const props = defineProps<{
+//   oldValues?: OldValue
+// }>()
 const emit = defineEmits<{
   (e: 'submit', values: Omit<UserDTO, 'company'>): Omit<UserDTO, 'company'>
 }>()
@@ -54,42 +54,60 @@ async function loadRoleOptions(e: VirtualScrollerLazyEvent) {
     }
   }
 }
+//Varidate dateTime
+// Create a ref for the selected date and time
+const selectedDatetime = ref<string>(new Date().toISOString().slice(0, 16));
 
-const image = ref<IFile>()
-const imageErrorMessage = ref<string>('')
+// Create a computed property to check if the datetime is invalid
+const isDatetimeInvalid = computed(() => {
+  const dateStr = selectedDatetime.value;
+  const parsedDate = Date.parse(dateStr);
+  return isNaN(parsedDate);
+});
 
-function onChooseImage(e: FileUploadRemoveUploadedFile) {
-  if (e.files[0].size >= 1024 * 1024) {
-    imageErrorMessage.value = 'ຂະໜາດຮູບຕ້ອງບໍ່ເກີນ 1MB'
-    return
+// Function to update the selectedDatetime ref and validate the input
+const updateDatetime = (event: Event) => {
+  const newDatetime = (event.target as HTMLInputElement).value;
+  if (!isDatetimeInvalid.value) {
+    selectedDatetime.value = newDatetime;
   }
+}; 
 
-  if (!e.files[0].type.startsWith('image/')) {
-    imageErrorMessage.value = 'ໄຟລ໌ຕ້ອງເປັນໄຟລ໌ຮູບ'
-    return
-  }
+// const image = ref<IFile>()
+// const imageErrorMessage = ref<string>('')
 
-  imageErrorMessage.value = ''
-  image.value = e.files[0]
-}
+// function onChooseImage(e: FileUploadRemoveUploadedFile) {
+//   if (e.files[0].size >= 1024 * 1024) {
+//     imageErrorMessage.value = 'ຂະໜາດຮູບຕ້ອງບໍ່ເກີນ 1MB'
+//     return
+//   }
 
-const { handleSubmit } = useForm<UserSchema>({
-  validationSchema: userSchema
-})
+//   if (!e.files[0].type.startsWith('image/')) {
+//     imageErrorMessage.value = 'ໄຟລ໌ຕ້ອງເປັນໄຟລ໌ຮູບ'
+//     return
+//   }
 
-const onSubmit = handleSubmit((values) => {
-  if (!image.value && !props.oldValues?.profile) {
-    imageErrorMessage.value = 'ກະລູນາເລືອກຮູບ'
-    return
-  }
+//   imageErrorMessage.value = ''
+//   image.value = e.files[0]
+// }
 
-  emit('submit', { ...values, profile: image.value })
-})
+// const { handleSubmit } = useForm<UserSchema>({
+//   validationSchema: userSchema
+// })
+
+// const onSubmit = handleSubmit((values) => {
+//   if (!image.value && !props.oldValues?.profile) {
+//     imageErrorMessage.value = 'ກະລູນາເລືອກຮູບ'
+//     return
+//   }
+
+//   emit('submit', { ...values, profile: image.value })
+// })
 </script>
 
 <template>
   <form class="mt-3" @submit.prevent="onSubmit">
-    <div class="flex flex-column justify-content-center align-items-center">
+    <!-- <div class="flex flex-column justify-content-center align-items-center">
       <p-image
         :src="
           image
@@ -107,7 +125,7 @@ const onSubmit = handleSubmit((values) => {
         {{ imageErrorMessage }}
       </message>
       <file-upload custom-upload auto mode="basic" @uploader="onChooseImage" />
-    </div>
+    </div> -->
     <div class="grid mt-3">
       <div class="col-12 md:col-6">
         <input-text
@@ -124,7 +142,19 @@ const onSubmit = handleSubmit((values) => {
           name="email"
           :value="oldValues ? oldValues.email : ''"
         />
-        <dropdown
+        <div>
+        <label for="datetime">ວັນທີເດືອນປີ <span class="text-red-600">*</span></label>
+        <input
+          class="col-12"
+          type="datetime-local"
+          id="datetime"
+          v-model="selectedDatetime"
+          @input="updateDatetime"
+          
+        />
+        <p v-if="isDatetimeInvalid" class="error-message">ກະລຸນາປ້ອນວັນທີໃຫ້ຄົບ.</p>
+      </div>
+        <!-- <dropdown
           name="role.id"
           label="ບົດບາດ"
           placeholder="ເລືອກບົດບາດ"
@@ -133,8 +163,9 @@ const onSubmit = handleSubmit((values) => {
           :lazy="{ isLoading: roleStore.state.isLoading }"
           @on-lazy-load="loadRoleOptions"
           :value="oldValues ? oldValues.role.id : ''"
-        />
+        /> -->
       </div>
+      
       <div class="col-12 md:col-6">
         <input-text
           label="ເບີໂທ"
@@ -157,3 +188,8 @@ const onSubmit = handleSubmit((values) => {
     </div>
   </form>
 </template>
+<style scoped>
+.error-message {
+  color: red;
+}
+</style>

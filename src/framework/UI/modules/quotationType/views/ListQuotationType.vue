@@ -97,9 +97,10 @@ async function onConfirmDelete(id: string) {
 }
 </script>
 <template>
-  <div class="card">
-    <h2 class="mb-3">ລາຍການປະເພດໃບສະເໜີລາຄາ</h2>
-    <data-table
+  <div class="card m-2">
+    <h2 class="mb-3">ດຶງລາຍການໂພສຈາກເຟສບຸກ</h2>
+    
+    <!-- <data-table
       :value="state.list.props"
       :loading="state.isLoading"
       lazy
@@ -169,7 +170,7 @@ async function onConfirmDelete(id: string) {
           </div>
         </template>
       </column>
-    </data-table>
+    </data-table> -->
   </div>
 </template>
 

@@ -20,7 +20,7 @@ async function updateUser(values: Omit<UserDTO, 'company'>) {
 </script>
 
 <template>
-  <div class="card">
+  <div class="card m-2">
     <h2>ແກ້ໄຂຜູ້ໃຊ້</h2>
     <form-user
       @submit="updateUser"

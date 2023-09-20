@@ -5,14 +5,14 @@ export const quotationRoute: RouteRecordRaw[] = [
     path: '/quotation',
     name: 'quotation',
     component: () => import('../views/QuotationView.vue'),
-    meta: { label: 'ໃບສະເໜີລາຄາ' },
+    meta: { label: 'ຈັດການທີມ' },
     redirect: { name: 'quotation.list' },
     children: [
       {
         path: 'list',
         name: 'quotation.list',
         component: () => import('../views/ListQuotationView.vue'),
-        meta: { label: 'ລາຍການໃບສະເໜີລາຄາ' }
+        meta: { label: 'ຈັດການແມັດ' }
       },
       {
         path: 'create',

@@ -39,7 +39,7 @@ async function onChangeProfile(e: FileUploadRemoveUploadedFile) {
       <h2>ຂໍ້ມູນຂອງຂ້ອຍ</h2>
     </div>
     <div v-if="state.data && !state.isLoading" class="flex flex-column p-3 mt-3">
-      <div class="flex flex-column align-items-center mb-5">
+      <!-- <div class="flex flex-column align-items-center mb-5">
         <img
           class="bg-cover bg-center bg-no-repeat w-9rem h-9rem border-50 border-2 mb-3"
           :style="{
@@ -52,7 +52,7 @@ async function onChangeProfile(e: FileUploadRemoveUploadedFile) {
           {{ imageErrorMessage }}
         </message>
         <file-upload mode="basic" custom-upload @uploader="onChangeProfile" auto />
-      </div>
+      </div> -->
       <div class="grid p-2">
         <div class="col-12 md:col-4">
           <p class="text-300">ຊື່</p>

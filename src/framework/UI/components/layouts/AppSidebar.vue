@@ -10,39 +10,39 @@ const isActive = ref<boolean>(false)
 const menu: Array<MenuItem> = [
   {
     key: '1',
-    label: 'ໜ້າແລກ',
+    label: 'ຈັດການຊຸດຂໍ້ຄວາມ',
     icon: 'pi pi-home',
     color: 'text-blue-500',
     to: 'dashboard'
   },
-  {
-    key: '2',
-    label: 'ລູກຄ້າ',
-    icon: 'pi pi-users',
-    color: 'text-red-500',
-    to: 'customer'
-  },
-  {
-    key: '3',
-    label: 'ບໍລິສັດ',
-    icon: 'pi pi-building',
-    color: 'text-green-500',
-    to: 'company'
-  },
+  // {
+  //   key: '2',
+  //   label: 'ລູກຄ້າ',
+  //   icon: 'pi pi-users',
+  //   color: 'text-red-500',
+  //   to: 'customer'
+  // },
+  // {
+  //   key: '3',
+  //   label: 'ບໍລິສັດ',
+  //   icon: 'pi pi-building',
+  //   color: 'text-green-500',
+  //   to: 'company'
+  // },
   {
     key: '4',
-    label: 'ຜູ້ໃຊ້',
+    label: 'ຈັດການຂໍ້ມູນຜູ້ໃຊ້',
     icon: 'pi pi-user',
     color: 'text-yellow-500',
     to: 'user'
   },
-  {
-    key: '6',
-    label: 'ບົດບາດ',
-    icon: 'pi pi-users',
-    color: 'text-orange-500',
-    to: 'role'
-  },
+  // {
+  //   key: '6',
+  //   label: 'ບົດບາດ',
+  //   icon: 'pi pi-users',
+  //   color: 'text-orange-500',
+  //   to: 'role'
+  // },
   // {
   //   key: '6',
   //   label: 'ໃບສະເໜີລາຄາ',
@@ -59,7 +59,7 @@ const menu: Array<MenuItem> = [
   // }
   {
     key: '6',
-    label: 'ໃບສະເໜີລາຄາ',
+    label: 'ຈັດການທີມ',
     icon: 'pi pi-file',
     color: 'text-purple-500',
     to: '',
@@ -67,13 +67,20 @@ const menu: Array<MenuItem> = [
     children: [
       {
         key: '61',
-        label: 'ໃບສະເໜີລາຄາ',
+        label: 'ຈັດການແມັດ',
         color: 'text-yellow-500',
         to: 'quotation'
       },
       {
         key: '62',
-        label: 'ປະເພດ',
+        label: 'ດຶງລາຍການໂພສຈາກເຟສບຸກ',
+        color: 'text-green-500',
+        to: 'quotationType'
+      }
+      ,
+      {
+        key: '63',
+        label: 'ເລືອກໂພສ ແລະ ຈັບຄູແມັດ',
         color: 'text-green-500',
         to: 'quotationType'
       }
@@ -98,13 +105,13 @@ function subLinkActive() {
 </script>
 <template>
   <aside class="shadow-1 h-screen fixed z-2 surface-overlay">
-    <div class="flex flex-column h-full white-space-nowrap">
+    <div class="flex flex-column h-full bg-red-600">
       <div
         @click="router.push({ name: 'dashboard' })"
         class="flex align-items-center ml-3 pt-3 overflow-hidden cursor-pointer"
       >
-        <img src="../../../../../public/logo.png" style="width: 44px" />
-        <span class="font-bold text-3xl">HalTech</span>
+        <img src="../../../../../public/logo1.png" style="width: 200px" />
+        <!-- <span class="font-bold text-3xl">HalTech</span> -->
       </div>
       <div class="overflow-y-auto">
         <ul class="list-none p-3 m-0">

@@ -7,6 +7,6 @@ export const updateProfileSchema: ObjectSchema<Omit<UpdateProfileDTO, 'profile'>
 })
 
 export const changePasswordSchema: ObjectSchema<ChangePasswordDTO> = object({
-  oldPassword: string().required('ກະລຸນາລະຫັດເກົ່າ').max(30, 'ຕົວອັກສອນບໍ່ຄວນເກີນ 30 ຕົວ'),
-  newPassword: string().required('ກະລຸນາລະຫັດໃໝ່').max(30, 'ຕົວອັກສອນບໍ່ຄວນເກີນ 30 ຕົວ')
+  oldPassword: string().required('ກະລຸນາປ້ອນລະຫັດເກົ່າ').max(30, 'ຕົວອັກສອນບໍ່ຄວນເກີນ 30 ຕົວ'),
+  newPassword: string().required('ກະລຸນາປ້ອນລະຫັດໃໝ່').max(30, 'ຕົວອັກສອນບໍ່ຄວນເກີນ 30 ຕົວ')
 })

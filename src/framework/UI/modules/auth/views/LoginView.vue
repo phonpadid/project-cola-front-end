@@ -27,8 +27,8 @@ const invalidForm = reactive<{ email: string; password: string }>({
           style="margin-top: 10rem; margin-bottom: 9rem"
         >
           <div class="flex flex-column align-items-center">
-            <img src="/logo.png" style="width: 5rem" />
-            <span class="font-bold text-3xl">HalTech</span>
+            <!-- <img src="/2.png" style="width: 5rem" /> -->
+            <span class="font-bold text-3xl">Cola</span>
           </div>
           <v-form :validation-schema="loginSchema" class="mt-3" @submit="login">
             <div class="flex flex-column gap-3 mb-3">
@@ -75,7 +75,7 @@ const invalidForm = reactive<{ email: string; password: string }>({
           </v-form>
         </div>
         <span class="white-space-nowrap font-medium ml-2 text-color"
-          >&#9400;2023 Haltech | All Rights Reserved</span
+          >&#9400;2023 Cala | All Rights Reserved</span
         >
       </div>
     </div>
@@ -84,6 +84,6 @@ const invalidForm = reactive<{ email: string; password: string }>({
 
 <style scoped>
 .backgroundImage {
-  background: url('/1hal.png');
+  background: url('/2.png');
 }
 </style>

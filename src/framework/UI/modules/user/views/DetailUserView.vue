@@ -12,8 +12,8 @@ await getOne(params.id as string)
 </script>
 
 <template>
-  <div class="card">
-    <h2>ລາຍລະອຽດຜູ້ໃຊ້</h2>
+  <div class="card m-3">
+    <h2>ລາຍລະອຽດຂອງຜູ້ໃຊ້</h2>
     <div v-if="state.data && !state.isLoading" class="flex flex-column p-3 mt-3">
       <div class="flex flex-column align-items-center mb-5">
         <p-image

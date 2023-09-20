@@ -92,7 +92,6 @@ export const useUserStore = defineStore('user-store', () => {
     if (result) {
       await getAll()
     }
-
     state.isLoading = false
   }
 

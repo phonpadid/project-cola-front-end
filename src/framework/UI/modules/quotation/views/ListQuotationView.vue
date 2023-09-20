@@ -12,15 +12,81 @@ import DataTable, {
 import Dropdown from 'primevue/dropdown'
 import InputText from 'primevue/inputtext'
 import Tag from 'primevue/tag'
-import { computed, ref } from 'vue'
+import { computed, ref, nextTick, watchEffect } from 'vue'
+
 import { useRoute, useRouter } from 'vue-router'
 import ChangeStatusQuotation from '../components/ChangeStatusQuotation.vue'
 import { useQuotationStore } from '../stores/quotation.store'
 import { setColorOfTagStatus, stautsOptions } from '../utils'
-
+import textarea from 'primevue/textarea'
+import { count } from 'console';
 const { push } = useRouter()
 const { query } = useRoute()
 const { getAll, state, queryArgs, clearFilterState } = useQuotationStore()
+
+// import Textarea from 'primevue/textarea';
+// Define your data properties
+const textInputRef = ref('');
+const showEimoji = ref(false);
+const error = ref('');
+
+function onShowClose() {
+  showEimoji.value = !showEimoji.value
+}
+
+const inputValueContent = ref('🥰ສະບາຍດີ🥰 ຂອບໃຈທີເຂົົ້າຮ່ວມເຊຍທີມ👉')
+
+// Btn 
+const showTeam_A = () => {
+  // const dataToShow = 'TeamA';
+  // inputValueContent.value = dataToShow;
+  const dataToAdd = 'Team_A VS ';
+  inputValueContent.value += dataToAdd;
+}
+
+const showTeam_B = () => {
+  // const dataToShow = 'TeamA';
+  // inputValueContent.value = dataToShow;
+  const dataToAdd = 'Team_B ';
+  inputValueContent.value += dataToAdd;
+}
+
+// DateTime
+const addDatetimeToTextarea = () => {
+  const currentDate = new Date();
+  const formattedDatetime = currentDate.toLocaleString(); // Format as desired
+  inputValueContent.value += formattedDatetime + '\n'; // Add datetime to textarea
+};
+
+function onSelectEmoji(emoji) {
+  console.log(textInputRef.value)
+  const cursor_cuurent_position = textInputRef.value.selectionStart
+  // const new_str = "my_new_value";
+  const speacial_content = inputValueContent.value[cursor_cuurent_position]
+    ? inputValueContent.value[cursor_cuurent_position]
+    : ''
+  inputValueContent.value =
+    inputValueContent.value.substring(0, cursor_cuurent_position) +
+    emoji.i +
+    speacial_content +
+    inputValueContent.value.substring(cursor_cuurent_position + 1)
+
+  // console.log(result);
+}
+watchEffect(() => {
+  // textInputRef.value
+})
+// varidate 
+const varidateText = () => {
+  const content = inputValueContent.value
+  if (content.trim() === '') {
+    error.value = 'ກະລຸນາປ້ອນຂໍ້ຄວາມກ່ອນ'
+  } else {
+    error.value = ''
+  }
+}
+
+
 
 const first = computed(() => {
   let result: number = 0
@@ -113,9 +179,37 @@ async function onClearFilter() {
 </script>
 
 <template>
+  <div class="card m-3">
+    <h2 class="mb-3">ຈັດການແມັດ</h2>
+    
   <div class="card">
-    <h2 class="mb-3">ລາຍການໃບສະເໜີລາຄາ</h2>
-    <data-table
+    <!-- {{ inputValueContent }} -->
+    <p v-if="error" class="error-message">{{ error }}</p>
+    <textarea class="textarea " ref="textInputRef" v-model="inputValueContent" @input="varidateText" />
+    <button class="btn-emoji" @click="onShowClose" >😄</button>
+    <!-- {{ showEimoji }} -->
+    <EmojiPicker class="Emojipicker" v-show="showEimoji" @select="onSelectEmoji" />
+    <!-- <EmojiPicker v-model="inputValueContent" ref="textInputRef" picker-type="textarea" @select="onSelectEmoji" /> -->
+    <button
+      class="btn_a m-2 bg-primary cursor-pointer text-white hover:text-gray-900 hover:bg-red-500" @click="showTeam_A"
+    >
+      $teamA
+    </button>
+    <button
+      class="btn_b m-2 bg-pink-600 cursor-pointer text-white hover:text-gray-900 hover:bg-yellow-500"
+      @click="showTeam_B"
+    >
+      $teamB
+    </button>
+    <button
+      class="btn_b m-2 bg-pink-600 cursor-pointer text-white hover:text-gray-900 hover:bg-yellow-500"
+      @click="addDatetimeToTextarea"
+    >
+      $dateTime
+    </button>
+  </div>
+
+    <!-- <data-table
       :value="state.list.props"
       :loading="state.isLoading"
       lazy
@@ -199,6 +293,7 @@ async function onClearFilter() {
           </dropdown>
         </template>
       </column>
+
       <column field="action" header="ຈັດການ" class="white-space-nowrap">
         <template #body="{ data }">
           <div class="flex gap-2">
@@ -216,6 +311,50 @@ async function onClearFilter() {
           </div>
         </template>
       </column>
-    </data-table>
+
+    </data-table> -->
   </div>
 </template>
+
+<style scoped>
+/* textarea */
+.textarea-with-icon {
+  display: flex;
+  align-items: center;
+}
+
+.textarea-with-icon i {
+  font-size: 1.2rem; /* Adjust the size as needed */
+  margin-right: 10px; /* Adjust the spacing as needed */
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  font-size: 16px;
+  padding: 10px;
+}
+/* Emoji */
+.Emojipicker {
+  position: relative;
+  left: 40%;
+}
+
+/* button */
+
+.btn-emoji {
+  position: relative;
+  left: 97%;
+  bottom: 100px;
+  border: 2px solid white;
+  color: white;
+  border-radius: 10px;
+}
+
+/* Text error */
+.error-message {
+  color: red;
+  font-size: 16px;
+}
+</style>

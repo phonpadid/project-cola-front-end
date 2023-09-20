@@ -21,11 +21,15 @@ import 'primevue/resources/primevue.min.css'
 // import 'primevue/resources/themes/lara-light-blue/theme.css'
 import 'primevue/resources/themes/fluent-light/theme.css'
 import '/node_modules/primeflex/primeflex.css'
+// import picker compopnent
+import EmojiPicker from 'vue3-emoji-picker'
 
+// import css
+import 'vue3-emoji-picker/css'
 const app = createApp(App)
 
 app.use(createPinia())
-app.use(router)
+app.use(router).component("EmojiPicker",EmojiPicker)
 app.use(PrimeVue, { ripple: true })
 app.use(ToastService)
 app.use(ConfirmationService)

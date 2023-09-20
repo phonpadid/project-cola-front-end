@@ -82,7 +82,7 @@ async function onPageChange(pageEvent: DataTablePageEvent) {
 const confirmDelete = useConfirm()
 async function onConfirmDelete(id: string) {
   confirmDelete.require({
-    message: 'ທ່ານຕ້ອງການລຶບລາຍການນີ້ບໍ?',
+    message: 'ທ່ານຕ້ອງການລຶບບໍ?',
     header: 'ການຢືນຢັນ',
     icon: 'pi pi-exclamation-triangle text-red-500',
     acceptClass: 'p-button-danger',

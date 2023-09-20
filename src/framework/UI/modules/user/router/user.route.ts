@@ -12,13 +12,13 @@ export const userRoute: RouteRecordRaw[] = [
         path: 'list',
         name: 'user.list',
         component: () => import('../views/ListUserView.vue'),
-        meta: { label: 'ລາຍການຜູ້ໃຊ້' }
+        meta: { label: 'ຈັດການຜູ້ໃຊ້' }
       },
       {
         path: 'create',
         name: 'user.create',
         component: () => import('../views/CreateUserView.vue'),
-        meta: { label: 'ສ້າງຜູ້ໃຊ້' }
+        meta: { label: 'ເພີ່ມຜູ້ໃຊ້' }
       },
       {
         path: 'detail/:id',

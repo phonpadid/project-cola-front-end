@@ -96,7 +96,7 @@ async function onClearSearch(e: any) {
 
 async function onConfirmDelete(id: string) {
   require({
-    message: 'ທ່ານຕ້ອງການລຶບລາຍການນີ້ບໍ?',
+    message: 'ທ່ານຕ້ອງການລຶບບໍ?',
     header: 'ການຢືນຢັນ',
     icon: 'pi pi-exclamation-triangle text-red-500',
     acceptClass: 'p-button-danger',
@@ -109,8 +109,8 @@ async function onConfirmDelete(id: string) {
 </script>
 
 <template>
-  <div class="card">
-    <h2 class="mb-3">ລາຍການຜູ້ໃຊ້</h2>
+  <div class="card m-2">
+    <h2 class="mb-3">ຈັດການຜູ້ໃຊ້</h2>
     <data-table
       :value="list.props"
       :loading="isLoading"
@@ -154,18 +154,20 @@ async function onConfirmDelete(id: string) {
       <column header="ຊື່" class="white-space-nowrap">
         <template #body="{ data }">
           <div class="flex align-items-center">
-            <img
+            <!-- <img
               :src="data.profile ? data.profile : '/placeholder-person.png'"
               alt="user profile"
               class="mr-2 w-2rem h-2rem border-circle"
               style="object-fit: cover"
-            />
+            /> -->
             <p class="mr-3">{{ data.name }}</p>
           </div>
         </template>
       </column>
+
       <column header="ອີເມວ" field="email" class="white-space-nowrap" />
       <column header="ເບີໂທ" field="tel" class="white-space-nowrap" />
+      <column header="ວັນທີເດືອນປີ" field="createdAt" class="white-space-nowrap" />
       <column header="ຈັດການ" class="white-space-nowrap">
         <template #body="{ data }">
           <div class="flex gap-2">

@@ -5,7 +5,7 @@ import type { LoginReqDTO, LoginResDTO } from '@/interface-adapter/dto/login.dto
 import type { ChangePasswordDTO, UpdateProfileDTO } from '@/interface-adapter/dto/user.dto'
 import type { IResponse } from '@/interface-adapter/interfaces/response.interface'
 import { inject, singleton } from 'tsyringe'
-import { MemoryApi } from './memory.api'
+import { MemoryApi } from './memory.api'   
 
 @singleton()
 export class AuthenticationMemoryApi implements IAuthenticationApi {

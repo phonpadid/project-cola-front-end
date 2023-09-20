@@ -37,7 +37,8 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <header class="flex align-items-center justify-content-between pl-3 pr-4 h-4rem surface-ground">
+<!-- surface-ground -->
+  <header class="flex align-items-center justify-content-between pl-3 pr-4 h-4rem bg-red-600">
     <div class="flex align-items-center justify-content-center gap-2">
       <div
         class="cursor-pointer flex align-items-center justify-content-center border-circle hover:bg-gray-200 hover:text-gray-800 hover:border-2 border-gray-500"
@@ -49,8 +50,8 @@ onMounted(async () => {
       <Breadcrumb
         :model="items"
         :pt="{
-          root: { class: 'surface-ground border-none' },
-          label: { class: 'text-xs sm:text-lg font-bold text-400' }
+          root: { class: 'border-none bg-red-600' }, 
+          label: { class: 'text-xs sm:text-lg font-bold text-color' }
         }"
       />
     </div>

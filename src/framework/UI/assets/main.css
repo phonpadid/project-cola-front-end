@@ -1,0 +1,11 @@
+@import './font/Montserrat/Montserrat.css';
+@import './font/NotoSansLao/NotoSansLao.css';
+
+*{
+  font-family: 'NotoSansLao','Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body .p-component{
+  font-family: 'NotoSansLao','Montserrat', sans-serif;
+}
